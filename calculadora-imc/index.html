@@ -3,29 +3,32 @@
   <title>Calculadora de IMC</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
+  <script src="index.js"></script>
 </head>
 <body>
   <form class="container" id="formulario">
     <div class="col-md-5">
       <fieldset class="form-group">
-        <legend>Calculadora de IMC</legend>
-        <label for="kilos">Massa (kg):</label>
+        <legend id="legend-calc">Calculadora de IMC</legend>
+
+        <label for="massa">Massa (kg):</label>
         <input type="text" name="massa" class="form-control" />
         
         <label for="altura">Altura (cm):</label>
         <input type="text" name="altura" class="form-control" />
-
-        <label for="inlineFormCustomSelect">Preference</label>
-        <select id="inlineFormCustomSelect">
-          <option selected>Sexo</option>
-          <option value="1">Masculino</option>
-          <option value="2">Feminino</option>
-        </select>
         
+        <br>          
+
+        <a href="#" onclick="calcularIMC();" class="btn btn-primary">Calcular</a>
+
+        <br>
+        <br>
+
         <label for="imc">IMC:</label>
         <input type="text" name="imc" class="form-control" disabled="disabled" />
-        
-        <a href="#" onclick="calcularIMC();">Calcular</a>
+
+        <label for="classificacao">Classificação:</label>
+        <input type="text" name="classificacao" class="form-control" disabled="disabled" />
       </fieldset>
     </div>
   </form>

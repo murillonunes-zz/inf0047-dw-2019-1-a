@@ -1,3 +1,13 @@
-body {
+#legend-calc {
+    color: midnightblue;
+    font-family: "Trebuchet MS";
+}
+
+label {
+    color: midnightblue;
+}
+
+.container {
     background-color: lightsteelblue;
+    border-spacing: 20px;
 }
