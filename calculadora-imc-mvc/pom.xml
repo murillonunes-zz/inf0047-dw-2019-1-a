@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.murillonunes.dsw</groupId>
+    <artifactId>calcimcmvc</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>${project.groupId}:${project.artifactId}</name>
+
+    <description>
+        Projeto de uma calculadora de IMC (Índice de Massa Corporal) utilizando o padrão
+        MVC (Model-View-Controller). A expectativa é atender à atividade proposta da disciplina
+        de Desenvolvimento de Software para Web 2019-1 do INF-UFG.
+    </description>
+
+    <url>https://github.com/murillonunes/inf0047-dw-2019-1-a</url>
+
+    <organization>
+        <name>Instituto de Informática (UFG) - Fábrica de Software</name>
+        <url>http://www.inf.ufg.br</url>
+    </organization>
+
+    <inceptionYear>2019</inceptionYear>
+
+    <licenses>
+        <license>
+            <name>Creative Commons Attribution 4.0 International (CC BY 4.0)
+            </name>
+            <comments>A atribuição deve conter, explicitamente, a seguinte linha:
+                Copyright (c) 2016. Fábrica de Software - Instituto de Informática (UFG)
+            </comments>
+            <url>https://creativecommons.org/licenses/by/4.0/</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>murillonunes</id>
+            <name>Murillo Silva e Nunes</name>
+            <email>murillonunes@inf.ufg.br</email>
+            <organization>Instituto de Informática (UFG)</organization>
+            <organizationUrl>http://www.inf.ufg.br</organizationUrl>
+        </developer>
+    </developers>
+
+    <properties>
+        <!-- A versão do Java no código fonte será a 1.8. -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!-- A versão do Java no código binários será a 1.8. -->
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+
+        <maven.tomcat.port>9090</maven.tomcat.port>
+        <!-- URI do projeto no Tomcat. Precisa começar com "/". Exemplo: "/my-project" ficaria algo como "http://localhost:9090/my-project" -->
+        <maven.tomcat.path>/</maven.tomcat.path>
+    </properties>
+
+    <dependencies>
+        <!-- Dependência com a biblioteca de Servlet versão 3. -->
+        <dependency>
+            <!-- Identificação do grupo da biblioteca.  -->
+            <groupId>javax.servlet</groupId>
+            <!-- Identificação da biblioteca.  -->
+            <artifactId>javax.servlet-api</artifactId>
+            <!-- Versão da biblioteca.  -->
+            <version>3.1.0</version>
+            <!-- Instrução que faz com que o Maven exclua essa biblioteca do pacote final do projeto. É que os servidores de aplicação já possuem essa biblioteca dentro deles.  -->
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin para executar e administrar o projeto no Tomcat 7. Site do plugin: http://tomcat.apache.org/maven-plugin-2.2/tomcat7-maven-plugin -->
+            <plugin>
+                <!-- Identificação do grupo do plugin.  -->
+                <groupId>org.apache.tomcat.maven</groupId>
+                <!-- Identificação do plugin.  -->
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <!-- Versão do plugin. -->
+                <version>2.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
