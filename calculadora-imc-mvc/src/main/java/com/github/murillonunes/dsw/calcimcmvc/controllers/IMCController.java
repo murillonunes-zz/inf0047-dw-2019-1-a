@@ -17,22 +17,46 @@ import java.io.IOException;
 @WebServlet(value = "/")
 public class IMCController extends HttpServlet {
 
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void service(
+            HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
 
-        Float imc;
-        Float altura;
-        Float massa;
+        String strAltura = request.getParameter("altura");
+        String strMassa = request.getParameter("massa");
+        String strIMC = "";
+        String strFaixaDoIMC = "";
+        String msgErro = "";
+        boolean paramVazios, ocorrenciaDeErro;
 
-        altura = Float.valueOf(request.getParameter("altura"));
-        massa = Float.valueOf(request.getParameter("massa"));
+        if (strAltura != null && strMassa != null) {
+            paramVazios = false;
+            try {
+                float altura = Float.parseFloat(strAltura.replace(",", "."));
+                float massa = Float.parseFloat(strMassa.replace(",", "."));
 
-        IMCModel imcModel = new IMCModel(altura, massa);
+                IMCModel model = new IMCModel(massa, altura);
+                float imc = model.getIMC();
+                strIMC = String.valueOf(imc);
+                strFaixaDoIMC = model.getFaixaDoIMC();
+                ocorrenciaDeErro = false;
+            } catch (Exception e) {
+                ocorrenciaDeErro = true;
+                msgErro = "Ocorreu um erro: os dados preenchidos são inválidos.";
+            }
+        } else {
+            paramVazios = true;
+            ocorrenciaDeErro = false;
+        }
 
-        imc = imcModel.getIMC();
+        // Adiciona a variável na requisição para o JSP trabalhar.
+        request.setAttribute("imc", strIMC);
+        request.setAttribute("faixaDoIMC", strFaixaDoIMC);
+        request.setAttribute("ocorrenciaDeErro", ocorrenciaDeErro);
+        request.setAttribute("msgErro", msgErro);
+        request.setAttribute("paramVazios", paramVazios);
 
-        request.setAttribute("resultado", imc);
-
-        request.getRequestDispatcher("/calculoMvc.jsp").forward(request, response);
+        // Redireciona requisição para o JSP.
+        request.getRequestDispatcher("/imc.jsp").forward(request, response);
 
     }
 
